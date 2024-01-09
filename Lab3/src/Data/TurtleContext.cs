@@ -7,9 +7,9 @@ using Microsoft.EntityFrameworkCore.Storage;
 namespace Lab3.Data;
 
 public class TurtleContext(DbConnection connection) : DbContext {
-    public DbSet<Turtle> Turtles { get; set; } = null!;
-    public DbSet<Step> Steps { get; set; } = null!;
-    public DbSet<Figure> Figures { get; set; } = null!;
+    public virtual DbSet<Turtle> Turtles { get; set; } = null!;
+    public virtual DbSet<Step> Steps { get; set; } = null!;
+    public virtual DbSet<Figure> Figures { get; set; } = null!;
 
     private static DbConnection? _connection = null;
 

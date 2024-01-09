@@ -2,20 +2,14 @@ namespace Lab3.Models.Commands;
 
 using Lab3.Commands;
 
-public class ColorCommand : ICommand
+public class ColorCommand(TurtleExecutionContext turtle) : ICommand
 {
 	public string Name => "color";
 
-	private readonly Turtle _turtle;
 	private readonly string _possibleColorsString = string.Join(
 		", ",
 		Turtle.PossibleColors.Select(c => $"\"{c.ToString().ToLower()}\"")
 	);
-
-	public ColorCommand(Turtle turtle)
-	{
-		_turtle = turtle;
-	}
 
 	public void Execute(params string[] args)
 	{
@@ -27,8 +21,8 @@ public class ColorCommand : ICommand
 		PenColor? color = args[0].ToPenColor()
 			?? throw new ExecutionException($"Color possible values: {_possibleColorsString}.");
 
-        _turtle.Color = (PenColor)color;
-		_turtle.PrintState();
+        turtle.Value.Color = (PenColor)color;
+		turtle.Value.PrintState();
 	}
 
 	public override string ToString()

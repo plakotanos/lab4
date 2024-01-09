@@ -2,7 +2,7 @@ namespace Lab3.Models.Commands;
 
 using Lab3.Commands;
 
-public class AngleCommand(Turtle turtle) : ICommand
+public class AngleCommand(TurtleExecutionContext turtle) : ICommand
 {
 	public string Name => "angle";
 
@@ -18,8 +18,8 @@ public class AngleCommand(Turtle turtle) : ICommand
 			throw new ExecutionException($"'{Name}' does not accept non-integer arguments.");
 		}
 
-		turtle.Turn(n);
-		turtle.PrintState();
+		turtle.Value.Turn(n);
+		turtle.Value.PrintState();
 	}
 
 	public override string ToString() => $"{Name} N: command to change turtle's angle of direction to N degrees.";

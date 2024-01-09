@@ -2,16 +2,9 @@ namespace Lab3.Models.Commands;
 
 using Lab3.Commands;
 
-public class ListCommand : ICommand
+public class ListCommand(TurtleExecutionContext turtle) : ICommand
 {
 	public string Name => "list";
-
-	private readonly Turtle _turtle;
-
-	public ListCommand(Turtle turtle)
-	{
-		_turtle = turtle;
-	}
 
 	public void Execute(params string[] args)
 	{
@@ -24,13 +17,13 @@ public class ListCommand : ICommand
 
 		if (arg == "steps")
 		{
-			_turtle.PrintSteps();
+			turtle.Value.PrintSteps();
 			return;
 		}
 
 		if (arg == "figures")
 		{
-			_turtle.PrintFigures();
+			turtle.Value.PrintFigures();
 			return;
 		}
 
